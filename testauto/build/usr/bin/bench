@@ -1,0 +1,45 @@
+#!/usr/bin/python
+'''
+This provides a basic front-end .
+'''
+###############################################################################
+
+import sys, signal, logging 
+
+###############################################################################
+
+
+def cb_exit_handler(signum, frame):
+    '''
+    Handler function for exit signals.
+    '''
+    if signum == signal.SIGINT:
+        print('\nReceived SIGINT: Exiting gracefully')
+        logging.info('Test interrupted by user')
+        sys.exit(0)
+    print('Received signal ' + signum)
+
+def validate_params(args):
+    '''
+    The function validates the script test parameters 
+    '''
+def do_exit(argparser):
+    '''
+    The function does the exit operation, when test run fails	
+    '''
+    print('Detected parameter errors. Not running test. \n')
+    argparser.print_help()
+    sys.exit(1)
+
+def main():
+    '''
+    The main function.
+    '''
+
+if __name__ == '__main__':
+    # Set up our signal handlers
+    signal.signal(signal.SIGINT, cb_exit_handler)
+    signal.signal(signal.SIGTERM, cb_exit_handler)
+    main()
+
+
